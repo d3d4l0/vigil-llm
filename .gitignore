@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+conf/openai.conf
+.env
 __pycache__/
 *.py[cod]
 *$py.class

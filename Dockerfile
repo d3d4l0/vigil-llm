@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -37,13 +37,13 @@ RUN echo "Installing YARA from source ..." \
 COPY . .
 
 # Install Python dependencies including PyTorch CPU
-RUN echo "Installing Python dependencies ... " \
-    && pip install --no-cache-dir -r requirements.txt \
-    && pip install --no-cache-dir torch==2.1.1+cpu torchvision==0.16.1+cpu --index-url https://download.pytorch.org/whl/cpu
+RUN echo "Installing Python dependencies ... "
+RUN pip install --no-cache-dir -r requirements.txt 
+    
 
 # Expose port 5000 for the API server
 EXPOSE 5000
 
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh", "python", "vigil-server.py", "-c", "conf/server.conf"]
+ENTRYPOINT ["./entrypoint.sh", "python", "vigil-server.py", "-c", "conf/server.conf"]
