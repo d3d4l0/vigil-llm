@@ -13,6 +13,7 @@ from vigil.common import timestamp_str
 from vigil.vigil import Vigil
 
 
+logger.remove()
 logger.add('logs/server.log', format="{time} {level} {message}", level="INFO")
 
 app = Flask(__name__)
